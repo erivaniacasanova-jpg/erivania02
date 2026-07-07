@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import ErrorModal from "@/components/error-modal"
+import { X } from "lucide-react"
 
 const DEFAULT_REFERRAL_ID = "110956" // Francisco Eliedisom Dos Santos
 
@@ -69,7 +70,7 @@ interface RegistrationFormProps {
 
 const STEP_TITLES = [
   "Qual o tipo de chip você deseja utilizar?",
-  "Em qual cobertura você deseja ativar seu plano?",
+  "Qual das 3 operadoras abaixo tem o melhor sinal de cobertura em sua cidade?",
   "Dados Pessoais",
   "Contato",
   "Endereço",
@@ -94,6 +95,7 @@ export default function RegistrationForm({ representante }: RegistrationFormProp
   const [whatsappValidating, setWhatsappValidating] = useState(false)
   const [selectedOperator, setSelectedOperator] = useState<"VIVO" | "TIM" | "CLARO" | null>(null)
   const [submitted, setSubmitted] = useState(false)
+  const [showCoberturaModal, setShowCoberturaModal] = useState(false)
 
   const [formData, setFormData] = useState({
     cpf: "",
@@ -521,6 +523,17 @@ export default function RegistrationForm({ representante }: RegistrationFormProp
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowCoberturaModal(true)}
+                      className="flex items-center justify-between p-4 rounded-lg border-2 border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-colors cursor-pointer"
+                    >
+                      <span className="font-semibold text-lg" style={{ color: "#EA580C" }}>NÃO SEI</span>
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 )}
 
@@ -737,6 +750,25 @@ export default function RegistrationForm({ representante }: RegistrationFormProp
       )}
 
       <ErrorModal open={showErrorModal} onOpenChange={setShowErrorModal} message={errorMessage} />
+
+      {/* Modal de Consulta de Cobertura */}
+      {showCoberturaModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-[85vh] flex flex-col relative">
+            <button
+              onClick={() => setShowCoberturaModal(false)}
+              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-600" />
+            </button>
+            <iframe
+              src="https://cobertura.suanetturbinada.com.br"
+              className="w-full h-full rounded-lg border-0"
+              title="Consulta de Cobertura"
+            />
+          </div>
+        </div>
+      )}
     </>
   )
 }
