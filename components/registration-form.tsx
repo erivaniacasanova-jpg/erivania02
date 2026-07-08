@@ -446,7 +446,7 @@ export default function RegistrationForm({ representante }: RegistrationFormProp
         {step === 0 && (
           <div className="text-center mb-2">
             <p className="text-sm sm:text-base text-gray-700">
-              {"É uma satisfação receber você em nossa associação. Para ativarmos o seu plano na Federal Associados, precisaremos que você preencha o formulário abaixo corretamente. O cadastro será rapido, sem consulta ao spc/serasa e sem fidelidade."}
+              {"É uma satisfação receber você em nossa associação. Para ativarmos o seu plano, preencha o formulário abaixo corretamente. O cadastro é rápido, sem consulta ao SPC/Serasa e sem fidelidade. Ao concluir o cadastro, será necessário realizar a sua adesão associativa correspondente ao valor do plano escolhido."}
             </p>
           </div>
         )}
