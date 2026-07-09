@@ -491,6 +491,7 @@ export default function RegistrationForm({ representante }: RegistrationFormProp
                 {/* Seletores de Operadora */}
                 {!selectedOperator && (
                   <div className="flex flex-col gap-3">
+                    {/* BOTÃO VIVO - Descomente as linhas abaixo para reativar
                     <button
                       type="button"
                       onClick={() => setSelectedOperator("VIVO")}
@@ -501,6 +502,7 @@ export default function RegistrationForm({ representante }: RegistrationFormProp
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </button>
+                    FIM DO BOTÃO VIVO */}
 
                     <button
                       type="button"
